@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import { format } from 'date-fns'
 import clsx from 'clsx'
 
 import styles from './BlogHero.module.css'
 
-function BlogHero({ title, publishedOn, className, ...delegated }) {
+function BlogHero({
+  title,
+  publishedOn,
+  className,
+  ...delegated
+}: PropsWithChildren<{
+  title: string
+  publishedOn: string
+  className?: string
+  delegated?: any
+}>) {
   const humanizedDate = format(new Date(publishedOn), 'MMMM do, yyyy')
 
   return (

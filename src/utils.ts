@@ -1,4 +1,4 @@
-export const range = (start, end, step = 1) => {
+export const range = (start: number, end?: number, step = 1) => {
   let output = []
   if (typeof end === 'undefined') {
     end = start

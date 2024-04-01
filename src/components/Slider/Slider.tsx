@@ -3,7 +3,13 @@ import clsx from 'clsx'
 
 import styles from './Slider.module.css'
 
-function Slider({ className, ...delegated }) {
+export default function Slider({
+  className,
+  ...delegated
+}: {
+  className?: string
+  delegated?: any
+}) {
   return (
     <input
       type="range"
@@ -12,5 +18,3 @@ function Slider({ className, ...delegated }) {
     />
   )
 }
-
-export default Slider

@@ -1,6 +1,6 @@
 export const BLOG_TITLE = 'Bits & Bytes'
 
-export const LIGHT_COLORS = {
+export const LIGHT_COLORS: Record<string, string> = {
   '--color-text': 'hsl(0deg 0% 5%)',
   '--color-primary-100': 'hsl(240deg 100% 90%)',
   '--color-primary-300': 'hsl(242deg 100% 70%)',
@@ -27,7 +27,7 @@ export const LIGHT_COLORS = {
   '--color-gray-1000': 'black',
 }
 
-export const DARK_COLORS = {
+export const DARK_COLORS: Record<string, string> = {
   '--color-text': 'hsl(0deg 0% 100%)',
   '--color-primary-100': 'hsl(50deg 100% 90%)',
   '--color-primary-300': 'hsl(50deg 100% 70%)',
@@ -97,6 +97,7 @@ export const LIGHT_SHADOWS = {
     0px 8px 16px hsl(50deg 20% 50% / 0.2)
   `,
 }
+
 export const DARK_SHADOWS = {
   '--shadow-page': 'none',
   '--shadow-card': 'none',

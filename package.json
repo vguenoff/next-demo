@@ -6,7 +6,9 @@
     "dev": "next dev -p 4321",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "concurrently \"npm:next-lint:*\" \"npm:tsc\" --raw",
+    "next-lint": "next lint",
+    "tsc": "tsc --noEmit",
     "new-component": "new-component"
   },
   "dependencies": {
@@ -16,6 +18,7 @@
     "autoprefixer": "^10.4.19",
     "bright": "0.8.4",
     "clsx": "1.2.1",
+    "concurrently": "^8.2.2",
     "date-fns": "2.30.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.1.4",

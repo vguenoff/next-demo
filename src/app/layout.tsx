@@ -1,4 +1,4 @@
-import React from 'react'
+import type { CSSProperties, PropsWithChildren } from 'react'
 import { Work_Sans, Spline_Sans_Mono } from 'next/font/google'
 import clsx from 'clsx'
 
@@ -14,6 +14,7 @@ const mainFont = Work_Sans({
   weight: 'variable',
   variable: '--font-family',
 })
+
 const monoFont = Spline_Sans_Mono({
   subsets: ['latin'],
   display: 'fallback',
@@ -21,7 +22,7 @@ const monoFont = Spline_Sans_Mono({
   variable: '--font-family-mono',
 })
 
-function RootLayout({ children }) {
+function RootLayout({ children }: PropsWithChildren<{}>) {
   // TODO: Dynamic theme depending on user preference
   const theme = 'light'
 
@@ -30,7 +31,7 @@ function RootLayout({ children }) {
       lang="en"
       className={clsx(mainFont.variable, monoFont.variable)}
       data-color-theme={theme}
-      style={theme === 'light' ? LIGHT_TOKENS : DARK_TOKENS}
+      style={(theme === 'light' ? LIGHT_TOKENS : DARK_TOKENS) as CSSProperties}
     >
       <body>
         <Header theme={theme} />

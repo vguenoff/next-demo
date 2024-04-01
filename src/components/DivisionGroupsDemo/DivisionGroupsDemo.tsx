@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import clsx from 'clsx'
 
 import { range } from '@/utils'
@@ -13,12 +13,16 @@ function DivisionGroupsDemo({
   numOfItems = 12,
   initialNumOfGroups = 1,
   includeRemainderArea,
+}: {
+  numOfItems: number
+  initialNumOfGroups: number
+  includeRemainderArea: number
 }) {
   const [numOfGroups, setNumOfGroups] = React.useState(initialNumOfGroups)
 
   const numOfItemsPerGroup = Math.floor(numOfItems / numOfGroups)
 
-  const remainder = includeRemainderArea ? numOfItems % numOfGroups : null
+  const remainder = includeRemainderArea ? numOfItems % numOfGroups : 0
 
   // When we're splitting into 1-3 groups, display side-by-side
   // columns. When we get to 4, it should switch to a 2x2 grid.
@@ -42,7 +46,9 @@ function DivisionGroupsDemo({
           min={1}
           max={4}
           value={numOfGroups}
-          onChange={ev => setNumOfGroups(Number(ev.target.value))}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setNumOfGroups(Number(e.target?.value))
+          }
         />
       </header>
 

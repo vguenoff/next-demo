@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import { Play, Pause, RotateCcw } from 'react-feather'
 
 import Card from '@/components/Card'
-import VisuallyHidden from '@/components/VisuallyHidden'
 
 import styles from './CircularColorsDemo.module.css'
 
@@ -38,9 +37,7 @@ function CircularColorsDemo() {
                 style={{
                   backgroundColor: color.value,
                 }}
-              >
-                <VisuallyHidden>{color.label}</VisuallyHidden>
-              </div>
+              ></div>
             </li>
           )
         })}
@@ -54,11 +51,9 @@ function CircularColorsDemo() {
         <div className={styles.actions}>
           <button>
             <Play />
-            <VisuallyHidden>Play</VisuallyHidden>
           </button>
           <button>
             <RotateCcw />
-            <VisuallyHidden>Reset</VisuallyHidden>
           </button>
         </div>
       </div>
