@@ -8,17 +8,15 @@ export default function BlogHero({
   title,
   publishedOn,
   className,
-  ...delegated
 }: PropsWithChildren<{
   title: string
   publishedOn: Date
   className?: string
-  delegated?: any
 }>) {
   const humanizedDate = format(new Date(publishedOn), 'MMMM do, yyyy')
 
   return (
-    <header className={clsx(styles.wrapper, className)} {...delegated}>
+    <header className={clsx(styles.wrapper, className)}>
       <div className={styles.content}>
         <h1>{title}</h1>
       </div>

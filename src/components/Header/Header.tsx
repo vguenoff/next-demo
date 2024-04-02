@@ -9,10 +9,9 @@ import styles from './Header.module.css'
 export default function Header({
   theme,
   className,
-  ...delegated
-}: PropsWithChildren<{ theme: string; className?: string; delegated?: any }>) {
+}: PropsWithChildren<{ theme: string; className?: string }>) {
   return (
-    <header className={clsx(styles.wrapper, className)} {...delegated}>
+    <header className={clsx(styles.wrapper, className)}>
       <Logo />
 
       <div className={styles.actions}>
