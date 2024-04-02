@@ -3,7 +3,7 @@ import clsx from 'clsx'
 
 import styles from './Card.module.css'
 
-function Card({
+export default function Card({
   children,
   className,
   ...delegated
@@ -14,5 +14,3 @@ function Card({
     </div>
   )
 }
-
-export default Card

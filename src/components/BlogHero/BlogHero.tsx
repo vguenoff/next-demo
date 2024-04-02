@@ -4,14 +4,14 @@ import clsx from 'clsx'
 
 import styles from './BlogHero.module.css'
 
-function BlogHero({
+export default function BlogHero({
   title,
   publishedOn,
   className,
   ...delegated
 }: PropsWithChildren<{
   title: string
-  publishedOn: string
+  publishedOn: Date
   className?: string
   delegated?: any
 }>) {
@@ -21,12 +21,7 @@ function BlogHero({
     <header className={clsx(styles.wrapper, className)} {...delegated}>
       <div className={styles.content}>
         <h1>{title}</h1>
-        <p>
-          Published on <time dateTime={publishedOn}>{humanizedDate}</time>
-        </p>
       </div>
     </header>
   )
 }
-
-export default BlogHero

@@ -16,6 +16,7 @@
   gap: 16px;
   align-items: center;
 }
+
 .action {
   display: block;
   border: none;
@@ -30,9 +31,11 @@
   cursor: pointer;
   transition: background 200ms;
 }
+
 .action:hover {
   background: var(--color-decorative-100);
 }
+
 .action svg {
   display: block;
 }

@@ -5,7 +5,6 @@ import clsx from 'clsx'
 import { LIGHT_TOKENS, DARK_TOKENS } from '@/constants'
 
 import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import './styles.css'
 
 const mainFont = Work_Sans({
@@ -22,7 +21,7 @@ const monoFont = Spline_Sans_Mono({
   variable: '--font-family-mono',
 })
 
-function RootLayout({ children }: PropsWithChildren<{}>) {
+export default function RootLayout({ children }: PropsWithChildren<{}>) {
   // TODO: Dynamic theme depending on user preference
   const theme = 'light'
 
@@ -36,10 +35,7 @@ function RootLayout({ children }: PropsWithChildren<{}>) {
       <body>
         <Header theme={theme} />
         <main>{children}</main>
-        <Footer />
       </body>
     </html>
   )
 }
-
-export default RootLayout

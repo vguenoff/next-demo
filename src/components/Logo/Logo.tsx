@@ -5,7 +5,7 @@ import { BLOG_TITLE } from '@/constants'
 
 import styles from './Logo.module.css'
 
-function Logo({ mobileAlignment = 'left' }) {
+export default function Logo({ mobileAlignment = 'left' }) {
   return (
     <Link
       href="/"
@@ -16,5 +16,3 @@ function Logo({ mobileAlignment = 'left' }) {
     </Link>
   )
 }
-
-export default Logo
