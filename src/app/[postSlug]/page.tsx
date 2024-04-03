@@ -5,8 +5,6 @@ import { loadBlogPost } from '@/helpers/file-helpers'
 import { BLOG_TITLE } from '@/constants'
 import COMPONENT_MAP from '@/helpers/mdx-components'
 
-import styles from './postSlug.module.css'
-
 type Params = {
   params: { postSlug: string }
 }
@@ -27,9 +25,9 @@ export default async function BlogPost({ params }: Params) {
   const { title } = frontmatter
 
   return (
-    <article className={styles.wrapper}>
+    <article>
       <BlogHero {...{ title }} />
-      <div className={styles.page}>
+      <div>
         <MDXRemote source={content} components={COMPONENT_MAP} />
       </div>
     </article>
