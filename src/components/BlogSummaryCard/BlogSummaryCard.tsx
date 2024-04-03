@@ -5,15 +5,17 @@ import Card from '@/components/Card'
 
 import styles from './BlogSummaryCard.module.css'
 
+type BlogSummaryCardProps = {
+  slug: string
+  title: string
+  abstract: string
+}
+
 export default function BlogSummaryCard({
   slug,
   title,
   abstract,
-}: {
-  slug: string
-  title: string
-  abstract: string
-}) {
+}: BlogSummaryCardProps) {
   const href = `/${slug}`
 
   return (
