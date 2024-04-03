@@ -9,7 +9,6 @@ export default function BlogHero({
   className,
 }: PropsWithChildren<{
   title: string
-  publishedOn: Date
   className?: string
 }>) {
   return (
