@@ -2,7 +2,7 @@ import type { CSSProperties, PropsWithChildren } from 'react'
 import { Work_Sans, Spline_Sans_Mono } from 'next/font/google'
 import clsx from 'clsx'
 
-import { LIGHT_TOKENS, DARK_TOKENS } from '@/constants'
+import { BLOG_TITLE, LIGHT_TOKENS, DARK_TOKENS } from '@/constants'
 
 import Header from '@/components/Header'
 import './styles.css'
@@ -20,6 +20,11 @@ const monoFont = Spline_Sans_Mono({
   weight: 'variable',
   variable: '--font-family-mono',
 })
+
+export const metadata = {
+  title: BLOG_TITLE,
+  description: 'A wonderful blog about JavaScript',
+}
 
 export default function RootLayout({ children }: PropsWithChildren<{}>) {
   // TODO: Dynamic theme depending on user preference
