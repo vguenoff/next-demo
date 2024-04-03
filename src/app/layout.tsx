@@ -1,8 +1,15 @@
-import type { CSSProperties, PropsWithChildren } from 'react'
 import { Work_Sans, Spline_Sans_Mono } from 'next/font/google'
+import { cookies } from 'next/headers'
 import clsx from 'clsx'
 
-import { BLOG_TITLE, LIGHT_TOKENS, DARK_TOKENS } from '@/constants'
+import type { CSSProperties, PropsWithChildren } from 'react'
+
+import {
+  BLOG_TITLE,
+  LIGHT_TOKENS,
+  DARK_TOKENS,
+  COLOR_THEME_COOKIE_NAME,
+} from '@/constants'
 
 import Header from '@/components/Header'
 import './styles.css'
@@ -26,9 +33,9 @@ export const metadata = {
   description: 'A wonderful blog about JavaScript',
 }
 
-export default function RootLayout({ children }: PropsWithChildren<{}>) {
-  // TODO: Dynamic theme depending on user preference
-  const theme = 'light'
+export default function RootLayout({ children }: PropsWithChildren) {
+  const savedTheme = cookies().get(COLOR_THEME_COOKIE_NAME)
+  const theme = savedTheme?.value || 'light'
 
   return (
     <html
@@ -38,7 +45,7 @@ export default function RootLayout({ children }: PropsWithChildren<{}>) {
       style={(theme === 'light' ? LIGHT_TOKENS : DARK_TOKENS) as CSSProperties}
     >
       <body>
-        <Header theme={theme} />
+        <Header initialTheme={theme} />
         <main>{children}</main>
       </body>
     </html>
