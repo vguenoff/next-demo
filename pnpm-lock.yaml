@@ -40,9 +40,6 @@ devDependencies:
   concurrently:
     specifier: ^8.2.2
     version: 8.2.2
-  date-fns:
-    specifier: 2.30.0
-    version: 2.30.0
   eslint:
     specifier: ^8.57.0
     version: 8.57.0
@@ -58,9 +55,6 @@ devDependencies:
   js-cookie:
     specifier: 3.0.5
     version: 3.0.5
-  new-component:
-    specifier: 5.0.2
-    version: 5.0.2
   next-mdx-remote:
     specifier: 4.4.1
     version: 4.4.1(react-dom@18.2.0)(react@18.2.0)
@@ -906,11 +900,6 @@ packages:
 
   /comma-separated-tokens@2.0.3:
     resolution: {integrity: sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg==}
-    dev: true
-
-  /commander@10.0.1:
-    resolution: {integrity: sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==}
-    engines: {node: '>=14'}
     dev: true
 
   /commander@4.1.1:
@@ -2781,15 +2770,6 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /new-component@5.0.2:
-    resolution: {integrity: sha512-ac49GT+QZZKSg4kF1b2++YJGDD8fZKIgDhjAzAZ1aAW8ROAG2bGlaQWEaS3AiO7kD/FP0B+0IyqGYAEBlkUI+g==}
-    hasBin: true
-    dependencies:
-      chalk: 4.1.2
-      commander: 10.0.1
-      prettier: 2.8.4
-    dev: true
-
   /next-mdx-remote@4.4.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-1BvyXaIou6xy3XoNF4yaMZUCb6vD2GTAa5ciOa6WoO+gAUTYsb1K4rI/HSC2ogAWLrb/7VSV52skz07vOzmqIQ==}
     engines: {node: '>=14', npm: '>=7'}
@@ -3132,12 +3112,6 @@ packages:
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
-    dev: true
-
-  /prettier@2.8.4:
-    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
     dev: true
 
   /prop-types@15.8.1:

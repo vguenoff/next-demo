@@ -6,10 +6,9 @@
     "dev": "next dev -p 4321",
     "build": "next build",
     "start": "next start",
-    "lint": "concurrently \"npm:next-lint:*\" \"npm:tsc\" --raw",
+    "lint": "concurrently \"npm:next-lint:*\" \"npm:tsc-lint\" --raw",
     "next-lint": "next lint",
-    "tsc": "tsc --noEmit",
-    "new-component": "new-component"
+    "tsc-lint": "tsc --noEmit"
   },
   "dependencies": {
     "next": "~14.1.4",
@@ -25,13 +24,11 @@
     "bright": "0.8.4",
     "clsx": "1.2.1",
     "concurrently": "^8.2.2",
-    "date-fns": "2.30.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.1.4",
     "framer-motion": "~10.14.0",
     "gray-matter": "4.0.3",
     "js-cookie": "3.0.5",
-    "new-component": "5.0.2",
     "next-mdx-remote": "4.4.1",
     "postcss": "^8.4.38",
     "react-feather": "2.0.10",
