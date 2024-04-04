@@ -8,18 +8,13 @@ type BlogSummaryCardProps = {
   abstract: string
 }
 
-export default function BlogSummaryCard({
-  slug,
-  title,
-  abstract,
-}: BlogSummaryCardProps) {
+export default function BlogSummaryCard({ slug, title }: BlogSummaryCardProps) {
   const href = `/${slug}`
 
   return (
     <Card>
       <Link href={href}>{title}</Link>
       <p>
-        {abstract}
         <Link href={href}>
           Continue reading <span>→</span>
         </Link>

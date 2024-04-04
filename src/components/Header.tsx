@@ -1,19 +1,16 @@
 'use client'
 import { useState } from 'react'
-import clsx from 'clsx'
 import Cookie from 'js-cookie'
-import { Sun, Moon } from 'react-feather'
-import Logo from '@/components/Logo'
+import { Home, Sun, Moon } from 'react-feather'
 import { COLOR_THEME_COOKIE_NAME, LIGHT_TOKENS, DARK_TOKENS } from '@/constants'
 
 import type { PropsWithChildren } from 'react'
 
-import styles from './Header.module.css'
+import Link from 'next/link'
 
 export default function Header({
   initialTheme,
-  className,
-}: PropsWithChildren<{ initialTheme: string; className?: string }>) {
+}: PropsWithChildren<{ initialTheme: string }>) {
   const [theme, setTheme] = useState(initialTheme)
 
   function handleToggleTheme() {
@@ -34,14 +31,13 @@ export default function Header({
   }
 
   return (
-    <header className={clsx(styles.wrapper, className)}>
-      <Logo />
-
-      <div className={styles.actions}>
-        <button className={styles.action} onClick={handleToggleTheme}>
-          {theme === 'light' ? <Moon size="1.5rem" /> : <Sun size="1.5rem" />}
-        </button>
-      </div>
+    <header className="flex">
+      <Link href="/" className="p-4 pl-0">
+        <Home />
+      </Link>
+      <button onClick={handleToggleTheme} className="p-4">
+        {theme === 'light' ? <Moon size="1.5rem" /> : <Sun size="1.5rem" />}
+      </button>
     </header>
   )
 }
