@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import Cookie from 'js-cookie'
 import { Home, Sun, Moon } from 'react-feather'
-import { COLOR_THEME_COOKIE_NAME, LIGHT_TOKENS, DARK_TOKENS } from '@/constants'
+import { COLOR_THEME_COOKIE_NAME, LIGHT_TOKENS, DARK_TOKENS } from '@/tokens'
 
 import type { PropsWithChildren } from 'react'
 
@@ -25,17 +25,18 @@ export default function Header({
     const root = document.documentElement
 
     root.setAttribute('data-color-theme', newTheme)
+
     Object.entries(newTokens).forEach(([key, value]) => {
       root.style.setProperty(key, value)
     })
   }
 
   return (
-    <header className="flex">
-      <Link href="/" className="p-4 pl-0">
+    <header className="flex pt-4 pb-10">
+      <Link href="/" className="pl-0">
         <Home />
       </Link>
-      <button onClick={handleToggleTheme} className="p-4">
+      <button onClick={handleToggleTheme} className="pl-4">
         {theme === 'light' ? <Moon size="1.5rem" /> : <Sun size="1.5rem" />}
       </button>
     </header>

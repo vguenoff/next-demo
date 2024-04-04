@@ -2,7 +2,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 
 import BlogHero from '@/components/BlogHero'
 import { loadBlogPost } from '@/helpers/file-helpers'
-import { BLOG_TITLE } from '@/constants'
+import { BLOG_TITLE } from '@/tokens'
 import COMPONENT_MAP from '@/helpers/mdx-components'
 
 type Params = {

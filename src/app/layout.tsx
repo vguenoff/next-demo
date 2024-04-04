@@ -12,7 +12,7 @@ import {
   LIGHT_TOKENS,
   DARK_TOKENS,
   COLOR_THEME_COOKIE_NAME,
-} from '@/constants'
+} from '@/tokens'
 
 import Header from '@/components/Header'
 import './styles.css'
@@ -49,23 +49,21 @@ export default async function RootLayout({ children }: PropsWithChildren) {
       style={(theme === 'light' ? LIGHT_TOKENS : DARK_TOKENS) as CSSProperties}
     >
       <body>
-        <main>
-          <div className="flex gap-8">
-            <aside className="flex-[2] h-screen sticky top-10 p-4">
-              <Header initialTheme={theme} />
-              <ul>
-                {blogPostList.map(({ slug, title, abstract }) => (
-                  <li key={slug}>
-                    <BlogSummaryCard {...{ slug, title, abstract }} />
-                  </li>
-                ))}
-              </ul>
-            </aside>
-            <section className="flex-[8] p-4 rounded min-h-[300px]">
-              {children}
-            </section>
-          </div>
-        </main>
+        <div className="flex gap-8">
+          <aside className="flex-[2] h-screen sticky top-0 p-10">
+            <Header initialTheme={theme} />
+            <ul>
+              {blogPostList.map(({ slug, title, abstract }) => (
+                <li key={slug}>
+                  <BlogSummaryCard {...{ slug, title, abstract }} />
+                </li>
+              ))}
+            </ul>
+          </aside>
+          <main className="flex-[8] p-10 rounded min-h-[300px]">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   )
