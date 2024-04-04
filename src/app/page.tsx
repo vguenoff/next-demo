@@ -4,5 +4,5 @@
 import { PropsWithChildren } from 'react'
 
 export default async function Home({ children }: PropsWithChildren) {
-  return children
+  return <>{children}</>
 }
