@@ -1,7 +1,7 @@
 export default function Page() {
   return (
-    <section className="flex flex-col min-h-screen">
-      <h1 className="underline w-full">Next.js</h1>
+    <section className="flex min-h-screen flex-col">
+      <h1 className="w-full underline">Next.js</h1>
       <h2 className="mt-3 pb-5">
         App Router, Server Components, Suspense and more...
       </h2>

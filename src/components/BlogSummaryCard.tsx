@@ -1,24 +1,25 @@
 import Link from 'next/link'
 
-import Card from '@/components/Card'
-
 type BlogSummaryCardProps = {
   slug: string
   title: string
-  abstract: string
+  i: number
 }
 
-export default function BlogSummaryCard({ slug, title }: BlogSummaryCardProps) {
-  const href = `/${slug}`
-
+export default function BlogSummaryCard({
+  slug,
+  title,
+  i,
+}: BlogSummaryCardProps) {
   return (
-    <Card>
-      <Link href={href}>{title}</Link>
-      <p>
-        <Link href={href}>
-          Continue reading <span>→</span>
-        </Link>
+    <Link href={`/${slug}`}>
+      <div className="hidden sm:block">
+        <p className="m-0">{title}</p>
+        <p className="to-blue-300">→</p>
+      </div>
+      <p className="h-5 w-5 shrink-0 grow-0 rounded-full border to-blue-300 text-center text-sm font-bold leading-5 sm:hidden">
+        {i + 1}
       </p>
-    </Card>
+    </Link>
   )
 }

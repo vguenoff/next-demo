@@ -32,11 +32,11 @@ export default function Header({
   }
 
   return (
-    <header className="flex pt-4 pb-10">
-      <Link href="/" className="pl-0">
+    <header className="flex flex-col pb-10 pt-4 sm:flex-row ">
+      <Link href="/" className="pb-3 pl-0">
         <Home />
       </Link>
-      <button onClick={handleToggleTheme} className="pl-4">
+      <button onClick={handleToggleTheme} className="sm:pl-4">
         {theme === 'light' ? <Moon size="1.5rem" /> : <Sun size="1.5rem" />}
       </button>
     </header>

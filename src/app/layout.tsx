@@ -49,18 +49,18 @@ export default async function RootLayout({ children }: PropsWithChildren) {
       style={(theme === 'light' ? LIGHT_TOKENS : DARK_TOKENS) as CSSProperties}
     >
       <body>
-        <div className="flex gap-8">
-          <aside className="flex-[2] h-screen sticky top-0 p-10">
+        <div className="flex">
+          <aside className="sticky top-0 h-screen flex-[4] p-5 sm:p-10">
             <Header initialTheme={theme} />
             <ul>
-              {blogPostList.map(({ slug, title, abstract }) => (
+              {blogPostList.map(({ slug, title }, i) => (
                 <li key={slug}>
-                  <BlogSummaryCard {...{ slug, title, abstract }} />
+                  <BlogSummaryCard {...{ slug, title, i }} />
                 </li>
               ))}
             </ul>
           </aside>
-          <main className="flex-[8] p-10 rounded min-h-[300px]">
+          <main className="min-h-[300px] flex-[8] rounded p-10 pl-0">
             {children}
           </main>
         </div>
