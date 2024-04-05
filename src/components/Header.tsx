@@ -33,7 +33,7 @@ export default function Header({
 
   return (
     <header className="flex flex-col pb-10 pt-4 sm:flex-row ">
-      <Link href="/" className="pb-3 pl-0">
+      <Link href="/" className="pb-3 pl-0 sm:pb-0">
         <Home />
       </Link>
       <button onClick={handleToggleTheme} className="sm:pl-4">
