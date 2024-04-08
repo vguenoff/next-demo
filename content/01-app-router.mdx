@@ -1,0 +1,86 @@
+---
+title: 'App Router'
+---
+
+## Overview
+
+- The /app directory is our way of creating routes
+
+- page.js lets us "publish" a React component so that it's visible on the web
+
+- layout.js provides a shared structure, to be used by one or more pages. Essentially, every visible page is a **combination of a layout + a page component**.
+
+- Unlike with Parcel and other build tools, we render the entire DOM structure with Next, from the root `<html>` tag, the `<body>` tag, and everything else. There are no .html files in a Next project.
+
+- We can nest directories if we want to create additional URLs. For example, if we create /src/app/about/page.js, that component will be shown when visiting localhost:3000/about. The layout.js will be reused by default.
+
+- All components in Next.js are **server components by default**. So if we try to add a React.useEffect() call, we'll get an error. We can convert any component to a Client Component with the "use client" directive.
+
+## App Router
+
+Apart from routing, App Router boasts a range of other features, including:
+
+### Layout Component (layout.tsx)
+
+A layout component is a versatile UI element that shapes a page's structure. It can include components like headers, footers, and sidebars, and even offer shared functions like navigation.
+
+Layout components work with routing, enabling smooth transitions between app pages. Since the layout component remains active when routes change, its state is retained, ensuring **consistent and reusable layouts with minimal effort**.
+
+This component is designed to receive a children prop and **wrap all page files in the same directory** with it:
+
+```jsx
+export default function layout({ children }) {
+  return <div className="layout">{children}</div>
+}
+```
+
+### Nested Layouts
+
+Nested Layouts allows you to define multiple levels of layout components, each **enclosing the content of its child components**.
+This feature provides a flexible and modular way to structure your application's UI.
+
+![](nested-layout.avif)
+
+[Next docs on pages and payouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts)
+
+### Template Components (template.tsx)
+
+Template components are like layouts, but they create a new instance for each child on navigation. This means recreating DOM elements, losing state, and resetting effects every time the route changes.
+
+You can use them for things like tracking page views or interactive widgets. You can create a template by exporting a default React component from a template.js file. This component should be designed to receive a children prop.
+
+```jsx
+export default function Template({ children }) {
+  return <div>{children}</div>
+}
+```
+
+More detailed explanation on templates on this [link](https://www.builder.io/blog/nextjs-14-layouts-templates).
+
+### Error Component
+
+This component confines errors to the app's tiniest section. Making an error file auto-encloses the page with a React error boundary. Any error within this file's folder swaps the component with its contents.
+
+The error component is rendered like this behind the scenes:
+
+```jsx
+<Layout>
+  <ErrorBoundary fallback={<Error />}>
+    <Page />
+  </ErrorBoundary>
+</Layout>
+```
+
+And shows something like this:
+
+![](https://www.freecodecamp.org/news/content/images/2023/08/error-layout.png)
+
+### Route Groups
+
+Route Groups organize routes in the app directory without altering URL paths. Enclosing a folder name in parentheses creates a Route Group that keeps related routes together.
+
+This allows for logical grouping, nested layouts, and a clean URL structure. That is:
+
+![](https://www.freecodecamp.org/news/content/images/2023/08/route-groups.png)
+
+In the example above, authentication pages are grouped together for better organization, without altering URL structure.

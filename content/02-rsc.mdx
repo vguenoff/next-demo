@@ -1,0 +1,103 @@
+---
+title: 'React Server Components'
+---
+
+## React Server Components
+
+Here's example code for what RSC code looks like:
+
+```jsx
+export default async function TrendingProducts() {
+  const link = mysqliConnect('localhost', 'root', 'passw0rd')
+  const data = await mysqliQuery(link, 'SELECT * FROM products')
+
+  return (
+    <>
+      <h1>Trending Products</h1>
+      {data.map(item => (
+        <article key={item.id}>
+          <h2>{item.title}</h2>
+          <p>{item.description}</p>
+        </article>
+      ))}
+    </>
+  )
+}
+```
+
+So TrendingProducts is a React component, but it's also an async function?? What's going on here?
+
+- The big idea with “Server Components” is that they only **run on the server**.
+
+- More technically, Server Components are **never hydrated on the client**. They're intended to be used for components that **don't need to be interactive**.
+
+- We can think of “React Server Components” as an optional new “mode” for React. Within this optional “mode”, there are two types of components: **Server Components** and **Client Components**.
+
+- **Server components** only render on the server. As a result, they can't create new state variables (they wouldn't be able to re-render if the state changed!). They also can't consume context, or use effects. They're a small subset of a typical React component.
+
+- **Client Components** are the components we've been working already in pevious versions of React and Next.
+
+- Confusingly, **Client Components still render on the server** during Server Side Rendering. They're called “Client Components” because they do render on the client, unlike “Server Components”:
+
+![](client-server.png)
+
+- RSC and SSR are separate features. It's possible to use them separately. But they're intended to be used together:
+
+![](ssr-rsc.png)
+
+- In the React Server Components paradigm, we need to declare whether a component is a Server Component or a client component. We can do this with directives:
+
+```jsx
+'use client'
+import React from 'react'
+
+export default function Counter() {
+  const [count, setCount] = React.useState(0)
+
+  return <button onClick={() => setCount(count + 1)}>Count: {count}</button>
+}
+```
+
+- In theory, we would also need to specify Server Components with another directive 'use server' but so far, the only framework to fully adopt React Server Components is Next. In Next, all components are assumed to be Server Components by default, and so we can omit it.
+
+## The benefits of React Server Components
+
+RSC are a significant paradigm shift, an entirely new way to think about components!
+
+The most obvious benefit is performance. If half of the components in your application are Server Components, it means that your JS bundle will be significantly smaller, since all of that code can be omitted.
+
+## CSR vs SSR vs RSC+SSR
+
+Client Side Rendering
+![](csr.png)
+
+Serve Side Rendering
+![](ssr.png)
+
+RSC + Server Side Rendering
+![](rscssr.png)
+
+## Client components having server rendered children?
+
+![](client-server-tree.png)
+
+The chart above makes it seem that client component can have children that are server components but that's not the case.
+
+There's a super-important subtlety here: It's **not the parent/child relationship that matters, it's the owner/ownee relationship.**
+
+```jsx
+import ClientComponent from './ClientComponent'
+import ServerComponent from './ServerComponent'
+
+export default function Page() {
+  return (
+    <ClientComponent>
+      <ServerComponent />
+    </ClientComponent>
+  )
+}
+```
+
+Our top-level there is a Server Component, and it "owns" both the ClientComponent and ServerComponent components. This is the relationship that matters!
+
+More in-depth article on [Server and Client Composition Patterns](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns).

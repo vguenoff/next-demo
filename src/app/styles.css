@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --link: #ff79c6;
+}
+
 *,
 *::before,
 *::after {
@@ -111,16 +115,20 @@ p {
 }
 
 a {
-  color: currentColor;
+  /* color: currentColor; */
   text-decoration-color: var(--color-primary);
   text-decoration-thickness: 2px;
   text-underline-offset: 0.125em;
-  font-weight: 500;
+  font-weight: bold;
   transition: all 200ms;
 
   &:hover {
     text-underline-offset: 0.175em;
   }
+}
+
+.pages a {
+  color: var(--link);
 }
 
 button {

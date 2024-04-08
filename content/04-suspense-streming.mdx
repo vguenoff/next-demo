@@ -1,0 +1,66 @@
+---
+title: 'Suspense & Streaming'
+---
+
+## Suspense & Streaming
+
+The React team has long said that Suspense is a low-level feature, something built into libraries and meta-frameworks. Open-source maintainers need to learn the hard stuff, but not app developers like us.
+
+And in fact, that's sorta how it's worked out. The new version of Next uses Suspense under-the-hood, to glorious effect. You don't need to understand Suspense at all to take advantage of it in Next!
+
+## Using Suspense in Next
+
+The primary way to access Suspense in Next is through **loading.js**.
+
+When we create a file named loading.js and colocate it next to page.js, Next will automatically wrap the two in a Suspense boundary. Somewhere in the Next.js codebase, there's likely some code that looks like this:
+
+```jsx
+function NextApp({ params, LoadingComponent, PageComponent }) {
+  if (LoadingComponent) {
+    return (
+      <React.Suspense fallback={<LoadingComponent params={params} />}>
+        <PageComponent params={params} />
+      </React.Suspense>
+    )
+  }
+
+  return <PageComponent params={params} />
+}
+```
+
+By creating a loading.js component, we opt in to Suspense.
+
+## There were two parts of the Suspense API:
+
+- Creating a Suspense boundary with `<React.Suspense>`.
+- Broadcasting the loading status for components within the boundary.
+
+Creating the boundary is only half of the story. We also need a way for the components within that boundary to say “Hey, don't render yet! I'm still waiting on data”.
+
+Server Components are also allowed to be asynchronous. This means that when we render the component that performs an asynchronous action (e.g. fetch data), we get back a Promise, and that promise will resolve after the data-fetching is complete and the component has been rendered.
+
+With Server Components, React can use the component itself to track whether the component is ready or not.
+
+## Streaming
+
+Streaming allows you to break down the page's HTML into smaller chunks and progressively send those chunks from the server to the client.
+
+```jsx
+import { Suspense } from 'react'
+import { PostFeed, Weather } from './Components'
+
+export default function Posts() {
+  return (
+    <section>
+      <Suspense fallback={<p>Loading feed...</p>}>
+        <PostFeed />
+      </Suspense>
+      <Suspense fallback={<p>Loading weather...</p>}>
+        <Weather />
+      </Suspense>
+    </section>
+  )
+}
+```
+
+[Next.js docs on Loading UI and Streaming](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming)
