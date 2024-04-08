@@ -1,7 +1,9 @@
 import { Work_Sans, Spline_Sans_Mono } from 'next/font/google'
 import { cookies } from 'next/headers'
 import clsx from 'clsx'
+
 import BlogSummaryCard from '@/components/BlogSummaryCard'
+import PageTransitionEffect from '@/components/PageTransitionEffect'
 
 import { getBlogPostList } from '@/helpers/file-helpers'
 
@@ -61,7 +63,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
             </ul>
           </aside>
           <main className="pages col-span-7 min-h-[300px] max-w-7xl p-10 pl-5 sm:col-span-6">
-            {children}
+            <PageTransitionEffect>{children}</PageTransitionEffect>
           </main>
         </div>
       </body>
