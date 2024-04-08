@@ -135,22 +135,13 @@ button {
   padding: 0;
 }
 
-@media (min-width: 35rem) {
-  h1 {
-    font-size: 2.25rem;
-  }
-
-  h2 {
-    font-size: 1.75rem;
-  }
-  h3 {
-    font-size: 1.5rem;
-  }
-}
-
 .blog-post {
   li {
     list-style-type: '→';
     padding-inline-start: 10px;
   }
+}
+
+pre {
+  line-height: 2;
 }
