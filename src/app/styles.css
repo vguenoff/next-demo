@@ -101,8 +101,8 @@ h3 {
 }
 
 p {
-  font-size: 1.25rem;
-  margin-bottom: 1.5em;
+  font-size: 0.85rem;
+  margin-bottom: 1.25em;
 
   code {
     display: inline-block;
@@ -144,4 +144,16 @@ button {
 
 pre {
   line-height: 2;
+  font-size: 0.85rem;
+}
+
+@media (min-width: 35rem) {
+  p {
+    font-size: 1.25rem;
+    margin-bottom: 1.5em;
+  }
+
+  pre {
+    font-size: 1rem;
+  }
 }
