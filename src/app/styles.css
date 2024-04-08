@@ -139,3 +139,10 @@ button {
     font-size: 1.5rem;
   }
 }
+
+.blog-post {
+  li {
+    list-style-type: '→';
+    padding-inline-start: 10px;
+  }
+}

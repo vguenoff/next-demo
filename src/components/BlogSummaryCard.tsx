@@ -12,7 +12,7 @@ export default function BlogSummaryCard({
   i,
 }: BlogSummaryCardProps) {
   return (
-    <Link href={`/${slug}`}>
+    <Link href={`/${slug}`} prefetch={true}>
       <div className="hidden sm:block">
         <p className="m-0">{title}</p>
         <p className="to-blue-300">→</p>

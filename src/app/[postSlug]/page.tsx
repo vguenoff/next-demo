@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Params) {
 
   return {
     title: `${frontmatter.title} • ${BLOG_TITLE}`,
-    description: frontmatter.abstract,
+    // description: frontmatter.abstract,
   }
 }
 
@@ -27,7 +27,8 @@ export default async function BlogPost({ params }: Params) {
   return (
     <article>
       <BlogHero {...{ title }} />
-      <div>
+
+      <div className="blog-post">
         <MDXRemote source={content} components={COMPONENT_MAP} />
       </div>
     </article>

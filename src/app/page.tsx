@@ -1,11 +1,8 @@
 export default function Page() {
   return (
     <section className="flex min-h-screen flex-col">
-      <h1 className="w-full underline">Next.js</h1>
-      <h2 className="mt-3 pb-5">
-        App Router, Server Components, Suspense and more...
-      </h2>
-      <p>
+      <h1 className="w-full">Exploring Next.js 14 Main Features</h1>
+      <p className="pt-10">
         We want to explore new Next.js features because moving to the App Router
         may be the first time using React features that Next.js builds on top of
         such as Server Components, Suspense, and more. When combined with new
