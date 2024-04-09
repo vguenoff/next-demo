@@ -2,4 +2,80 @@
 title: 'Lazy Loading'
 ---
 
-## Lazy Loading
+## Lazy Loading in Next
+
+```jsx
+import dynamic from 'next/dynamic'
+
+const Latex = dynamic(() => import('react-latex-next'))
+```
+
+Under the hood, this dynamic function uses [React.lazy](https://react.dev/reference/react/lazy). It's a drop-in replacement for it, and works exactly the same way.
+
+But by switching to dynamic, we get a couple small bells and whistles.
+
+### Built-in loading state
+
+With React.lazy, we specify loading states by wrapping the lazy component in `<React.Suspense>`:
+
+```jsx
+const Latex = React.lazy(() => import('react-latex-next'))
+
+;<React.Suspense fallback={<Spinner />}>
+  {showMath && <Latex>{'$2^4 - 4$'}</Latex>}
+</React.Suspense>
+```
+
+With dynamic, we can pass a second argument for configuration. One of the config options is a loading component:
+
+```jsx
+const Latex = dynamic(() => import('react-latex-next'), { loading: Spinner })
+
+;<Latex>{'$2^4 - 4$'}</Latex>
+```
+
+The dynamic function wraps up the `<React.Suspense>` element for us, so we can “bake in” a loading state for this particular component. We don't have to set up our own Suspense boundary.
+
+This isn't necessarily better. With React.lazy, we have more control, since we're the ones that place the Suspense boundary. This allows us to “batch” multiple lazy-loaded components under one loading state:
+
+```jsx
+const Latex = React.lazy(() => import('react-latex-next'))
+const Fireworks = React.lazy(() => import('some-fireworks-package'))
+
+function App() {
+  const [showLatex, setShowLatex] = React.useState(false)
+
+  return (
+    <>
+      <React.Suspense fallback={<Spinner />}>
+        <Latex />
+        <Fireworks />
+      </React.Suspense>
+      <button onClick={() => setShowLatex(!showLatex)}>Toggle</button>
+    </>
+  )
+}
+```
+
+In this scenario, we have two hefty third-party components: `<Latex>` and `<Fireworks>` (which, presumably, would render some flashy fireworks on the screen). With React.lazy, we can group both of these components under one Suspense boundary, showing a fallback UI until both have finished loading. It's the same general idea we saw with the Facebook Ads Manager example.
+
+### Disabling SSR
+
+Next gives us the option to disable server-side rendering for lazy-loaded components:
+
+```jsx
+const Fireworks = dynamic(() => import('../components/fireworks'), {
+  ssr: false,
+  loading: Spinner,
+})
+```
+
+When we do this, Next will render the fallback component during the server-side render. The initial HTML will contain a spinner, and it'll be swapped out on the client once the bundle is loaded.
+
+This is usefull for third-party components that just don't work on the server. Some NPM packages, especially ones from outside the React community, assume that they'll only be running in-browser. If you try to use them in a Next.js app, they'll explode.
+
+This dynamic function gives us a tool we can use to skip rendering a component on the server, and only on the client.
+
+Ultimately, both React.lazy and dynamic are appropriate tools to use for lazy loading in Next.js. Because they both use the same underlying technique, they have the exact same performance characteristics. It all comes down to which API you prefer. 😄
+
+["Lazy Loading” Next.js docs](https://nextjs.org/docs/app/building-your-application/optimizing/lazy-loading“)
