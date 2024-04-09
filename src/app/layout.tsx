@@ -62,7 +62,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
               ))}
             </ul>
           </aside>
-          <main className="pages col-span-7 min-h-[300px] max-w-7xl p-10 pl-5 sm:col-span-6">
+          <main className="pages col-span-7 min-h-[300px] max-w-7xl p-10 pl-0 sm:col-span-6 sm:pl-5">
             <PageTransitionEffect>{children}</PageTransitionEffect>
           </main>
         </div>

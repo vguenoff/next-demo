@@ -4,6 +4,23 @@
 
 :root {
   --link: #ff79c6;
+  --min-fs: 0.8;
+  --max-fs: 1;
+  --min-vw: 20;
+  --max-vw: 45;
+
+  --min-fs-rem: var(--min-fs) * 1rem;
+  --max-fs-rem: var(--max-fs) * 1rem;
+  --min-vw-rem: var(--min-vw) * 1rem;
+
+  --slope: (var(--max-fs) - var(--min-fs)) * (100vw - var(--min-vw-rem)) /
+    (var(--max-vw) - var(--min-vw));
+
+  font-size: clamp(
+    var(--min-fs-rem),
+    var(--min-fs-rem) + var(--slope),
+    var(--max-fs-rem)
+  );
 }
 
 *,
@@ -101,7 +118,10 @@ h3 {
 }
 
 p {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  /* font-size: clamp(0.8rem, 5vw, 1rem); */
+  /* font-size: clamp(0.8rem, -4vw + 6rem, 1rem); */
+
   margin-bottom: 1.25em;
 
   code {
@@ -145,15 +165,4 @@ button {
 pre {
   line-height: 2;
   font-size: 0.85rem;
-}
-
-@media (min-width: 35rem) {
-  p {
-    font-size: 1.25rem;
-    margin-bottom: 1.5em;
-  }
-
-  pre {
-    font-size: 1rem;
-  }
 }
