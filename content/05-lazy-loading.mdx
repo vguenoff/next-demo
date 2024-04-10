@@ -59,7 +59,7 @@ function App() {
 
 ### Disabling SSR
 
-Next gives us the option to disable server-side rendering for lazy-loaded components:
+- Next gives us the option to disable server-side rendering for lazy-loaded components:
 
 ```jsx
 const Fireworks = dynamic(() => import('../components/fireworks'), {
@@ -68,8 +68,8 @@ const Fireworks = dynamic(() => import('../components/fireworks'), {
 })
 ```
 
-When we do this, Next will render the fallback component during the server-side render. The initial HTML will contain a spinner, and it'll be **swapped out on the client once the js bundle is loaded**. This dynamic function gives us a tool we can use to skip rendering a component on the server, and only on the client.
+- When we do this, Next will render the fallback component during the server-side render. The initial HTML will contain a spinner, and it'll be **swapped out on the client once the js bundle is loaded**. This dynamic function gives us a tool we can use to skip rendering a component on the server, and only on the client.
 
-Ultimately, both **React.lazy** and **dynamic** are good tools to use for lazy loading in Next.js. Because they both use the same underlying technique, they have **the exact same performance characteristics**.
+- Ultimately, both **React.lazy** and **dynamic** are good tools to use for lazy loading in Next.js. Because they both use the same underlying technique, they have **the exact same performance characteristics**.
 
 ["Lazy Loading” Next.js docs](https://nextjs.org/docs/app/building-your-application/optimizing/lazy-loading“)
