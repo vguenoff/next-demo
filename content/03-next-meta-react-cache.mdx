@@ -12,7 +12,7 @@ export const metadata = {
 }
 ```
 
-We can also use the generateMetadata function to dynamically calculate the page title from the route segments:
+- We can also use the **generateMetadata** function to dynamically calculate the page title from the route segments:
 
 ```jsx
 export async function generateMetadata({ params }) {
@@ -24,11 +24,11 @@ export async function generateMetadata({ params }) {
 }
 ```
 
-When the user visits /profiles/3, params.profileId will be equal to "3", and we use that parameter to fetch the user's profile info, so we can include the user's name in the document title.
+- When the user visits /profiles/3, params.profileId will be equal to "3", and we use that parameter to fetch the user's profile info, so we can include the user's name in the document title.
 
 ## React Cache
 
-The example above works well, but the trouble is that it often results in duplicate work being done. The component itself also needs to get the profile info!
+The example above works well, but the trouble is that it often results in duplicate work being done. For example the component itself may also needs to get the profile info.
 
 ```jsx
 export async function generateMetadata({ params }) {
@@ -46,8 +46,8 @@ async function ProfilePage({ params, searchParams }) {
 }
 ```
 
-Fortunately, there is a solution to this problem: **React.cache**.
-Here's what this looks like:
+- The solution to this problem is **React.cache**.
+  Here's what this looks like:
 
 ```jsx
 import React from 'react'
@@ -58,9 +58,6 @@ export const getProfileInfo = React.cache(async profileId => {
 })
 ```
 
-React.cache allows us to memoize a function, so that the work won't be repeated when the function is called multiple times with the same parameters.
+- **React.cache** allows us to memoize a function, so that the work won't be repeated when the function is called multiple times with the same parameters. It's **like React.memo, but for regular functions** instead of components.
 
-The best explanation I've heard for this is that it's **like React.memo, but for regular functions** instead of components.
-
-**Note:**
-This React.cache function is a work-in-progress. The React team is working on making it an official part of React. In the meantime, the Next team has patched React to include it. It's an official, ready-to-use part of Next.
+- **Note:** React.cache function is a work-in-progress. The React team is working on making it an official part of React. In the meantime, the Next team has patched React to include it. It's an official, ready-to-use part of Next.
