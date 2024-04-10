@@ -4,17 +4,15 @@ title: 'App Router'
 
 ## Overview
 
-- The /app directory is our way of creating routes
+- The /app directory is the way of creating routes
 
-- page.js lets us "publish" a React component so that it's visible on the web
+- **page.js** lets us the main content on the page
 
-- layout.js provides a shared structure, to be used by one or more pages. Essentially, every visible page is a **combination of a layout + a page component**.
+- **layout.js** provides a shared structure, to be used by one or more pages. Essentially, every visible page is a **combination of a layout and a page component**.
 
-- Unlike with Parcel and other build tools, we render the entire DOM structure with Next, from the root `<html>` tag, the `<body>` tag, and everything else. There are no .html files in a Next project.
+- We can nest directories if we want to create additional URLs. For example, if we create /src/app/about/page.js, that component will be shown when visiting www.example.com/about. The layout.js will be reused by default.
 
-- We can nest directories if we want to create additional URLs. For example, if we create /src/app/about/page.js, that component will be shown when visiting localhost:3000/about. The layout.js will be reused by default.
-
-- All components in Next.js are **server components by default**. So if we try to add a React.useEffect() call, we'll get an error. We can convert any component to a Client Component with the "use client" directive.
+- All components in Next.js are **server components by default**. So, for example, if we try to add a useEffect() call, we'll get an error. We can convert any component to a Client Component with the "use client" directive.
 
 ## App Router
 

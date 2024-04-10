@@ -2,7 +2,8 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { usePathname } from 'next/navigation'
-import type { ReactNode } from 'react'
+import { useEffect, useRef } from 'react'
+import type { PropsWithChildren } from 'react'
 
 const variants = {
   hidden: { opacity: 0, x: 0, y: 150 },
@@ -10,24 +11,34 @@ const variants = {
   exit: { opacity: 0, x: 0, y: -150 },
 }
 
-const PageTransitionEffect = ({ children }: { children: ReactNode }) => {
-  // The `key` is tied to the url using the `usePathname` hook.
+const PageTransitionEffect = ({ children }: PropsWithChildren) => {
   const key = usePathname()
+  const pageRendered = useRef(false)
+
+  useEffect(() => {
+    pageRendered.current = true
+  }, [])
 
   return (
-    <AnimatePresence mode="popLayout">
-      <motion.div
-        key={key}
-        initial="hidden"
-        animate="enter"
-        exit="exit"
-        variants={variants}
-        transition={{ type: 'linear' }}
-        className="overflow-hidden"
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <>
+      {pageRendered.current ? (
+        <AnimatePresence mode="popLayout">
+          <motion.div
+            key={key}
+            initial="hidden"
+            animate="enter"
+            exit="exit"
+            variants={variants}
+            transition={{ type: 'linear' }}
+            // className="overflow-hidden"
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
+      ) : (
+        children
+      )}
+    </>
   )
 }
 
