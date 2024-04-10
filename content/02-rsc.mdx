@@ -25,7 +25,7 @@ export default async function TrendingProducts() {
 }
 ```
 
-So TrendingProducts is a React component, but it's also an async function?? What's going on here?
+So TrendingProducts is a React component, but it's also an async function and queries the database directly?? What's going on here?
 
 - The big idea with “Server Components” is that they only **run on the server**.
 
@@ -33,11 +33,11 @@ So TrendingProducts is a React component, but it's also an async function?? What
 
 - We can think of “React Server Components” as an optional new “mode” for React. Within this optional “mode”, there are two types of components: **Server Components** and **Client Components**.
 
-- **Server components** only render on the server. As a result, they can't create new state variables (they wouldn't be able to re-render if the state changed!). They also can't consume context, or use effects. They're a small subset of a typical React component.
+- **Server components** only render on the server. As a result, they stateless (they wouldn't be able to re-render if the state changed!). They also can't consume context, or use effects. They're a small subset of a typical React component.
 
-- **Client Components** are the components we've been working already in pevious versions of React and Next.
+- **Client Components** are the components we've been working already in pevious versions of Next.
 
-- Confusingly, **Client Components still render on the server** during Server Side Rendering. They're called “Client Components” because they do render on the client, unlike “Server Components”:
+- Confusingly, **Client Components still render on the server** during Server Side Rendering. They're called “Client Components” because they **do render on the client**, unlike “Server Components”:
 
 ![](client-server.png)
 
@@ -58,13 +58,15 @@ export default function Counter() {
 }
 ```
 
-- In theory, we would also need to specify Server Components with another directive 'use server' but so far, the only framework to fully adopt React Server Components is Next. In Next, all components are assumed to be Server Components by default, and so we can omit it.
+- In theory, we would also need to specify Server Components with another directive 'use server' but so far, the only framework to fully adopt React Server Components is Next. **In Next, all components are assumed to be Server Components by default**, and so we can omit it.
 
 ## The benefits of React Server Components
 
-RSC are a significant paradigm shift, an entirely new way to think about components!
+RSCs are a significant paradigm shift, an entirely new way to think about components.
 
-The most obvious benefit is performance. If half of the components in your application are Server Components, it means that your JS bundle will be significantly smaller, since all of that code can be omitted.
+- In RSCs default 'server component' we can fetch data on the server or query the database directly and than pass the it down the componetnt tree.
+
+- Maybe most obvious benefit is **performance**. If half of the components in your application are Server Components, it means that your JS bundle will be significantly smaller, since all of that code can be omitted.
 
 ## CSR vs SSR vs RSC+SSR
 
@@ -83,7 +85,7 @@ RSC + Server Side Rendering
 
 The chart above makes it seem that client component can have children that are server components but that's not the case.
 
-There's a super-important subtlety here: It's **not the parent/child relationship that matters, it's the owner/ownee relationship.**
+- There's a super-important subtlety here: It's **not the parent/child relationship that matters, it's the owner/ownee relationship.**
 
 ```jsx
 import ClientComponent from './ClientComponent'
@@ -98,6 +100,6 @@ export default function Page() {
 }
 ```
 
-Our top-level there is a Server Component, and it "owns" both the ClientComponent and ServerComponent components. This is the relationship that matters!
+- On top-level there is a Server Component, and it **"owns" both the ClientComponent and ServerComponent components**. This is the relationship that matters!
 
 More in-depth article on [Server and Client Composition Patterns](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns).
