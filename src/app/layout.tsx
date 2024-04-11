@@ -39,9 +39,8 @@ export const metadata = {
 }
 
 export default async function RootLayout({ children }: PropsWithChildren) {
-  const savedTheme = cookies().get(COLOR_THEME_COOKIE_NAME)
-  const theme = savedTheme?.value || 'light'
   const blogPostList: Record<string, string>[] = await getBlogPostList()
+  const theme = cookies().get(COLOR_THEME_COOKIE_NAME)?.value || 'dark'
 
   return (
     <html
