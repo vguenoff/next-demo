@@ -1,4 +1,4 @@
-export const BLOG_TITLE = 'Bits & Bytes'
+export const BLOG_TITLE = 'Exploring Next.js New Features'
 export const COLOR_THEME_COOKIE_NAME = 'color-theme'
 
 export const LIGHT_TOKENS: Record<string, string> = {

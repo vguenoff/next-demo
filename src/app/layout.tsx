@@ -35,7 +35,7 @@ const monoFont = Spline_Sans_Mono({
 
 export const metadata = {
   title: BLOG_TITLE,
-  description: 'A wonderful blog about JavaScript',
+  description: 'A blog about JavaScript',
 }
 
 export default async function RootLayout({ children }: PropsWithChildren) {

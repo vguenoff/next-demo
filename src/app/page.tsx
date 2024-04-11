@@ -1,3 +1,4 @@
+import { BLOG_TITLE } from '@/tokens'
 import Link from 'next/link'
 
 export default function Page() {
@@ -5,7 +6,7 @@ export default function Page() {
     <section className="flex flex-col">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <h1 className="text-4xl font-bold tracking-tight  sm:text-5xl">
-          Exploring Next.js 14 Main Features
+          {BLOG_TITLE}
         </h1>
         <p className="mt-6 text-lg leading-8 ">
           We want to explore new Next.js features because moving to the App
