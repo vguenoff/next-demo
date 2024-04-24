@@ -32,13 +32,9 @@ By creating a loading.js component, we opt in to Suspense.
 
 ## There were two parts of the Suspense API:
 
-- Creating a Suspense boundary with `<React.Suspense>`.
+- **Creating a Suspense boundary with `<React.Suspense>`** and broadcasting the loading status for components within the boundary.
 
-- Broadcasting the loading status for components within the boundary.
-
-- Creating the boundary is only half of the story. We also need a way for the components within that boundary to say “Hey, don't render yet! I'm still waiting on data”.
-
-We know that Server Components can also be asynchronous. This means that when we render the component that performs an asynchronous action (e.g. fetch data), we get back a Promise, and that promise will resolve after the data-fetching is complete and the component has been rendered. And **with Server Components, React can use the component itself to track whether the component is ready or not**.
+- Creating the boundary is only half of the story. We know that Server Components can also be asynchronous. So when we render the component that performs an asynchronous action (e.g. fetch data), we get back a Promise, and that promise will resolve after the data-fetching is complete and the component has been rendered. And **with Server Components, React can use the component itself to track whether the component is ready or not**.
 
 ## Streaming
 

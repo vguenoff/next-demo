@@ -7,25 +7,27 @@ title: 'React Server Components'
 Here's example code for what RSC code looks like:
 
 ```jsx
-export default async function TrendingProducts() {
-  const link = mysqliConnect('localhost', 'root', 'passw0rd')
-  const data = await mysqliQuery(link, 'SELECT * FROM products')
+export default async function Todos() {
+  const data = await sql`SELECT * FROM todos`
+  const { rows: todos } = data
 
   return (
-    <>
-      <h1>Trending Products</h1>
-      {data.map(item => (
-        <article key={item.id}>
-          <h2>{item.title}</h2>
-          <p>{item.description}</p>
-        </article>
-      ))}
-    </>
+    <main>
+      <AddForm />
+      <ul>
+        {todos.map(todo => (
+          <li key={todo.id}>
+            {todo.text}
+            <DeleteForm id={todo.id} todo={todo.text} />
+          </li>
+        ))}
+      </ul>
+    </main>
   )
 }
 ```
 
-So TrendingProducts is a React component, but it's also an async function and queries the database directly?? What's going on here?
+So Todos is a React component, but it's also an async function and queries the database directly?? What's going on here?
 
 - The big idea with “Server Components” is that they only **run on the server**.
 
@@ -33,7 +35,7 @@ So TrendingProducts is a React component, but it's also an async function and qu
 
 - We can think of “React Server Components” as an optional new “mode” for React. Within this optional “mode”, there are two types of components: **Server Components** and **Client Components**.
 
-- **Server components** only render on the server. As a result, they stateless (they wouldn't be able to re-render if the state changed!). They also can't consume context, or use effects. They're a small subset of a typical React component.
+- **Server components** only render on the server. As a result, **they are stateless** (they wouldn't be able to re-render if the state changed!). They also can't consume context, or use effects. They're a small subset of a typical React component.
 
 - **Client Components** are the components we've been working already in pevious versions of Next.
 
@@ -64,7 +66,7 @@ export default function Counter() {
 
 RSCs are a significant paradigm shift, an entirely new way to think about components.
 
-- In RSCs default 'server component' we can fetch data on the server or query the database directly and than pass the it down the componetnt tree.
+- In RSCs default 'server component' we can fetch data on the server or query the database directly and than pass it down the componetnt tree.
 
 - Maybe most obvious benefit is **performance**. If half of the components in your application are Server Components, it means that your JS bundle will be significantly smaller, since all of that code can be omitted.
 
