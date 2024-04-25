@@ -44,12 +44,9 @@ async function ProfilePage({ params, searchParams }) {
 }
 ```
 
-- The solution to this problem is **React.cache**.
-  Here's what this looks like:
+- The solution to this problem is **cache** the fuction.
 
 ```jsx
-import React from 'react'
-
 export const getProfileInfo = React.cache(async profileId => {
   await delay(Math.random() * 200 + 400)
   return DATA[profileId]
@@ -59,3 +56,5 @@ export const getProfileInfo = React.cache(async profileId => {
 - **React.cache** allows us to memoize a function, so that the work won't be repeated when the function is called multiple times with the same parameters. It's **like React.memo, but for regular functions** instead of components.
 
 - **Note:** React.cache function is a work-in-progress. The React team is working on making it an official part of React. In the meantime, the Next team has patched React to include it. It's an official, ready-to-use part of Next.
+
+[Cache an expensive computation on the React docs](https://react.dev/reference/react/cache#cache-expensive-computation)
