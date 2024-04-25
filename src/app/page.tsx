@@ -2,6 +2,8 @@ import { BLOG_TITLE } from '@/tokens'
 import Link from 'next/link'
 
 export default function Page() {
+  // throw new Error('Test the error page')
+
   return (
     <section className="flex flex-col">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
