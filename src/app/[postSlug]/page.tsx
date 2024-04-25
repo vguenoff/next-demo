@@ -1,6 +1,5 @@
 import { MDXRemote } from 'next-mdx-remote/rsc'
 
-import BlogHero from '@/components/BlogHero'
 import { loadBlogPost } from '@/helpers/file-helpers'
 import { BLOG_TITLE } from '@/tokens'
 import COMPONENT_MAP from '@/helpers/mdx-components'
@@ -26,8 +25,7 @@ export default async function BlogPost({ params }: Params) {
 
   return (
     <article>
-      <BlogHero {...{ title }} />
-
+      <h1 className="pb-10">{title}</h1>
       <div className="blog-post">
         <MDXRemote source={content} components={COMPONENT_MAP} />
       </div>

@@ -2,7 +2,7 @@
 title: 'Lazy Loading'
 ---
 
-## Lazy Loading in Next
+Lazy loading in Next.js helps improve the initial loading performance of an application by decreasing the amount of JavaScript needed to render a route.
 
 ```jsx
 import dynamic from 'next/dynamic'
@@ -72,4 +72,4 @@ const Fireworks = dynamic(() => import('../components/fireworks'), {
 
 - Ultimately, both **React.lazy** and **dynamic** are good tools to use for lazy loading in Next.js. Because they both use the same underlying technique, they have **the exact same performance characteristics**.
 
-["Lazy Loading” Next.js docs](https://nextjs.org/docs/app/building-your-application/optimizing/lazy-loading“)
+["Lazy Loading” Next.js docs](https://nextjs.org/docs/app/building-your-application/optimizing/lazy-loading)
