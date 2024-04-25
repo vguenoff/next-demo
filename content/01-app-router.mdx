@@ -8,7 +8,7 @@ title: 'App Router'
 
 - **layout.tsx** provides a shared structure, to be used by one or more pages. Essentially, every visible page is a **combination of a layout and a page component**.
 
-- We can nest directories if we want to create additional URLs. For example, if we create **/src/app/about/page.js**, that component will be shown when visiting **www.example.com/about**. The layout.tsx will be reused by default.
+- We can nest directories if we want to create additional URLs. For example, if we create **/src/app/about/something-else/page.js**, that component will be shown when visiting **www.example.com/about/something-else**. The layout.tsx will be reused by default.
 
 - All components in Next.js are **server components by default**. So, for example, if we try to add a useEffect() call, we'll get an error. We can convert any component to a Client Component with the **"use client"** directive.
 
